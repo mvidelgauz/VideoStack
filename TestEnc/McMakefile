@@ -1,0 +1,29 @@
+CXX   = g++ 
+CC    = gcc
+LDFLAGS += -pthread -lGL -lGLU -lz -lvpx -lx264 -lz -lvpx -lx264 -lmp3lame -L/usr/lib64 -ldl -lX11 -lXmu -lglut -fPIC -llzma -lvdpau -lasound -lvorbis -lpng
+debug: CFLAGS  = -g  -D _NO_NV -D _LIN -D _LIB_MODE 
+release: CFLAGS  =  -D _NO_NV -D _LIN -O3
+debug: exec
+release: exec
+INC = -L../../ffmpeg-3.2.5/so64 -I../../ffmpeg-3.2.5 -I/Projects -I../jsoncpp/include
+LIB = ../../ffmpeg-3.2.5/libs64
+INCL = -I../../ffmpeg-3.2.5 -I../jsoncpp/include
+
+
+
+OBJS =  /Projects/vSystem/VS_Reader.o /Projects/vSystem/VS_Controller.o /Projects/vSystem/VS_Sound.o /Projects/vSystem/VS_Writer.o  /Projects/vSystem/VS_ScreenCarrier.o main.o
+TARGET = mc_encoder
+
+
+
+all: exec
+clean:
+	rm -rf VS_Controller.d VS_Controller.o VS_Reader.d VS_Reader.o VS_Sound.d VS_Sound.o VS_System.d VS_Writer.d VS_Writer.o main.o main.d testwriter
+exec: $(TARGET)
+
+.cpp.o:
+	$(CXX) $(CFLAGS) $(INC) -c $< -o $@ 2> sk
+
+$(TARGET):  $(OBJS) 
+	$(CXX) -o $@  $(OBJS) $(INC) $(LDFLAGS) $(INCL)/libavcodec/libavcodec.a -lavformat -lavutil -lswscale -lavcodec -lavutil -lswresample -lavresample ../../glew/lib/libGLEW.a 2>sk
+  

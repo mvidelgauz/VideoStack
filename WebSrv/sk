@@ -1,0 +1,87 @@
+rio.cpp: In function ‘ssize_t rio_read(rio_t*, char*, size_t)’:
+rio.cpp:51:21: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     if (rp->rio_cnt < n)
+         ~~~~~~~~~~~~^~~
+rio.cpp: In function ‘ssize_t rio_readlineb(rio_t*, void*, size_t)’:
+rio.cpp:66:19: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     for (n = 1; n < maxlen; n++){
+                 ~~^~~~~~~~
+web_srv.cpp:22:29: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ static char *json_headers = "HTTP/1.1 200 OK\r\nContent-Length: %lu\r\nCache-Control: max-age=86400, public\r\nContent-Type: application/json\r\n\r\n";
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+web_srv.cpp:23:36: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ static char *gziped_json_headers = "HTTP/1.1 200 OK\r\nContent-Length: %lu\r\nCache-Control: max-age=86400, public\r\nContent-Encoding: gzip\r\nContent-Type: application/json\r\n\r\n";
+                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+web_srv.cpp: In function ‘bool is_base64(unsigned char)’:
+web_srv.cpp:92:14: error: ‘isalnum’ was not declared in this scope
+      return (isalnum(c) || (c == '+') || (c == '/'));
+              ^~~~~~~
+web_srv.cpp: In function ‘int DecodeBase64(char*, int, char*)’:
+web_srv.cpp:102:23: warning: converting to non-pointer type ‘char’ from NULL [-Wconversion-null]
+   char Smbl[2] = {NULL};
+                       ^
+web_srv.cpp:110:17: error: ‘PrsMain’ was not declared in this scope
+              if(PrsMain.SymFind(&pst1, Smbl) == false)return i2;
+                 ^~~~~~~
+web_srv.cpp:111:33: error: ‘DWORD’ was not declared in this scope
+              char_array_4[i] = (DWORD)pst1 - (DWORD)cb64;
+                                 ^~~~~
+web_srv.cpp:133:14: error: ‘PrsMain’ was not declared in this scope
+           if(PrsMain.SymFind(&pst1, Smbl) == false)return i2;
+              ^~~~~~~
+web_srv.cpp:134:30: error: ‘DWORD’ was not declared in this scope
+           char_array_4[j] = (DWORD)pst1 - (DWORD)cb64;
+                              ^~~~~
+web_srv.cpp: In function ‘void handle_request(dict_epoll_data*, char*)’:
+web_srv.cpp:315:19: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+             uri = "index.html";
+                   ^~~~~~~~~~~~
+web_srv.cpp: In function ‘void process_request(dict_epoll_data*, int)’:
+web_srv.cpp:373:36: error: expected primary-expression before ‘char’
+            write_req(ptr->sock_fd, char* bufp, int nleft, ptr);
+                                    ^~~~
+web_srv.cpp:373:48: error: expected primary-expression before ‘int’
+            write_req(ptr->sock_fd, char* bufp, int nleft, ptr);
+                                                ^~~
+web_srv.cpp: In function ‘void enter_loop(int, int)’:
+web_srv.cpp:433:63: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+                     if (events & EPOLLOUT & ptr->is_websocket == 0) {
+                                             ~~~~~~~~~~~~~~~~~~^~~~
+web_srv.cpp: At global scope:
+web_srv.cpp:23:14: warning: ‘gziped_json_headers’ defined but not used [-Wunused-variable]
+ static char *gziped_json_headers = "HTTP/1.1 200 OK\r\nContent-Length: %lu\r\nCache-Control: max-age=86400, public\r\nContent-Encoding: gzip\r\nContent-Type: application/json\r\n\r\n";
+              ^~~~~~~~~~~~~~~~~~~
+web_srv.cpp:22:14: warning: ‘json_headers’ defined but not used [-Wunused-variable]
+ static char *json_headers = "HTTP/1.1 200 OK\r\nContent-Length: %lu\r\nCache-Control: max-age=86400, public\r\nContent-Type: application/json\r\n\r\n";
+              ^~~~~~~~~~~~
+web_srv.cpp:9:13: warning: ‘gzip_header’ defined but not used [-Wunused-variable]
+ static char gzip_header[] = {
+             ^~~~~~~~~~~
+static.cpp:22:34: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ static char *default_mime_type = "text/plain";
+                                  ^~~~~~~~~~~~
+static.cpp:24:31: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ static char *static_headers = "HTTP/1.1 200 OK\r\nContent-length: %lu\r\nCache-Control: max-age=86400, public\r\nContent-type: %s\r\n\r\n";
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+static.cpp:25:38: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+ static char *gziped_static_headers = "HTTP/1.1 200 OK\r\nContent-length: %lu\r\nCache-Control: max-age=86400, public\r\nContent-type: %s\r\nContent-Encoding: gzip\r\n\r\n";
+                                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+static.cpp: In function ‘void serve_file(dict_epoll_data*, char*)’:
+static.cpp:63:21: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+         char *msg = "File not found";
+                     ^~~~~~~~~~~~~~~~
+static.cpp:64:54: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+         client_error(conn_sock, 404, "Not found", msg);
+                                                      ^
+static.cpp:73:25: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+             char *msg = "Dir listing is not impleted";
+                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+static.cpp:74:54: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+             client_error(conn_sock, 404, "Error", msg);
+                                                      ^
+static.cpp:77:25: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+             char *msg = "Unknow Error";
+                         ^~~~~~~~~~~~~~
+static.cpp:78:54: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+             client_error(conn_sock, 400, "Error", msg);
+                                                      ^

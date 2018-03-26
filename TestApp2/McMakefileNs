@@ -1,0 +1,29 @@
+CXX   = g++ 
+CC    = gcc
+LDFLAGS += -pthread -lGL -lGLU -lGLEW -lz -lvpx -lx264 -lz -lvpx -lx264 -lmp3lame -lfdk-aac -L/usr/lib64 -ldl -lX11 -lXmu -lglut -fPIC -llzma -lvdpau -lasound -lvorbis
+debug: CFLAGS  = -g  -DINIT_CUDA_GL=1 -D _LIN -D _LIB_MODE -D _M64 -fPIC
+release: CFLAGS  =  -DINIT_CUDA_GL=1 -D _LIN -D _M64 -fPIC
+debug: exec
+release: exec
+INC = -L../../ffmpeg-3.2.5/so64nf -I../../ffmpeg-3.2.5 -I/Projects
+INCL = -I../../ffmpeg-3.2.5  -I../jsoncpp/include
+
+
+OBJS = /Projects/vSystem/VS_Reader.o /Projects/vSystem/nv_helper.o /Projects/vSystem/VS_Controller.o /Projects/vSystem/VS_Sound.o main.o /Projects/vSystem/Cuda_src/dynlink_cuda.o /Projects/vSystem/Cuda_src/dynlink_nvcuvid.o /Projects/vSystem/Cuda_src/cudaModuleMgr.o ../x264/vx264.cpp
+
+TARGET = mc_player
+
+
+
+all: exec
+exec: $(TARGET)
+
+.cpp.o:
+	$(CXX) $(CFLAGS) $(INC) -c $< -o $@ 2> sk
+.c.o: 
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@ 2> sk
+
+
+$(TARGET):  $(OBJS) 
+	$(CXX) -o $@  $(OBJS) $(INC) $(LDFLAGS) -lavcodec -lavformat -lavutil -lswscale -lavcodec -lavutil -lswresample -lavresample 2>sk
+ 

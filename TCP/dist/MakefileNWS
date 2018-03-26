@@ -1,0 +1,17 @@
+CXX   = g++ 
+
+LDFLAGS += -pthread -lm -lstdc++ -lrt
+CFLAGS  =  -g -MD -Wall -I. -D _NO_WS
+
+OBJS = server.o tcpstream.o tcpacceptor.o 
+TARGET = server
+
+
+all: $(TARGET)
+
+.cpp.o:
+	$(CXX) $(CFLAGS) -c $< -o $@ 2> sk
+## 2> sk
+
+$(TARGET): $(OBJS)
+	$(CC) -o $@ $(OBJS) $(LDFLAGS) 2> sk

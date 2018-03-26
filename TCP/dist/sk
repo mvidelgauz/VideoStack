@@ -1,0 +1,2 @@
+/usr/bin/ld: warning: libx264.so.152, needed by /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/libavcodec.so, may conflict with libx264.so.148
+/usr/bin/ld: warning: libvpx.so.5, needed by /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/libavcodec.so, may conflict with libvpx.so.4

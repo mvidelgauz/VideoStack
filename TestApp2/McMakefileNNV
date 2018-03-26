@@ -1,0 +1,30 @@
+CXX   = g++ 
+CC    = gcc
+LDFLAGS += -pthread -lGL -lGLU -lz -lx264 -lz -lx264  -L/usr/lib64 -ldl -lX11 -lXmu -lglut -fPIC -llzma  -lasound  -lpng
+debug: CFLAGS  = -g  -D _NO_NV -D _LIN -D _LIB_MODE -masm=intel
+release: CFLAGS  =  -D _NO_NV -D _LIN -masm=intel
+debug: exec
+release: exec
+INC = -L../../ffmpeg-3.2.5/so64 -I../../ffmpeg-3.2.5 -I/Projects -I../jsoncpp/include
+LIB = ../../ffmpeg-3.2.5/libs64
+INCL = -I../../ffmpeg-3.2.5 -I../jsoncpp/include
+
+
+OBJS = /Projects/vSystem/VS_Reader.o /Projects/vSystem/VS_Controller.o /Projects/vSystem/VS_Sound.o main.o ../jsoncpp/src/lib_json/json_reader.o ../jsoncpp/src/lib_json/json_value.o ../jsoncpp/src/lib_json/json_writer.o  ../X264/vx264.o
+
+TARGET = mc_player_nnv
+
+
+
+all: exec
+exec: $(TARGET)
+
+.cpp.o:
+	$(CXX) $(CFLAGS) $(INC) -c $< -o $@ 2> sk
+.c.o: 
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@ 2> sk
+
+
+$(TARGET):  $(OBJS) 
+	$(CXX) -o $@  $(OBJS) $(INC) $(LDFLAGS) $(INCL)/libavcodec/libavcodec.a -lavformat -lavutil -lswscale -lavcodec -lavutil -lswresample -lavresample -lGLEW 2>sk
+ 

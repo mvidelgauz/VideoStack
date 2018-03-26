@@ -1,0 +1,27 @@
+4 - size of packet
+4 - packet stream id, 0xFFFFFFFF-0xFFFFFF00 reserved
+
+size / 0xFFFFFFFF - description packet id, consist of inital stream id table
+4 - number of streams
+  streams{
+    4 - type of the packet, 1 - video, 2 - audio
+    4 - stream id 
+    4 - codec id, if it's audio/video packet
+     if video{
+       4 - width 
+       4 - height
+       8 - fps(double)
+       8 - duration
+       8 - start_time 
+  }
+
+Audio/Video packet
+size / stream id
+8 - pts
+8 - dts
+4 - flags (0x1 B-frame)
+2 - number of packets before previous B-frame
+2 - reserved
+ 
+
+
